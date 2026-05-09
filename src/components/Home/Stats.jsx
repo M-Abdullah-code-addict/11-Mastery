@@ -1,4 +1,3 @@
-import React from "react";
 import { Users, FileText, Trophy, Globe } from "lucide-react";
 
 function Stats() {

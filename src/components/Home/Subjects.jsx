@@ -1,4 +1,3 @@
-import React from "react";
 import { Calculator, BookOpen, Brain, Shapes } from "lucide-react";
 
 function Subjects() {

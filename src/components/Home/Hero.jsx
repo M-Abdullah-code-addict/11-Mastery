@@ -1,5 +1,4 @@
-import React from 'react'
-import { logo, heroImage } from "../../constants";
+import { heroImage } from "../../constants";
 import { NavLink } from 'react-router-dom';
 
 function Hero() {
