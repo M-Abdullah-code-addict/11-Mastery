@@ -26,11 +26,11 @@ const pages = [
   },
 ];
 
+const backend_url = "http://localhost:8000"
+
 const materials = [
-  { id: 1, route: "mathquests", text: "Mathematics Questions" },
-  { id: 2, route: "engquests", text: "English Questions" },
-  { id: 3, route: "mathpapers", text: "Mathematics Past Papers" },
-  { id: 4, route: "engpapers", text: "English Past Papers" },
+  { id: 1, route: "math", text: "Mathematics" },
+  { id: 2, route: "english", text: "English" },
 ];
 
-export { logo, pages, instagramLogo, facebookLogo, heroImage, materials };
+export { logo, pages, instagramLogo, facebookLogo, heroImage, materials, backend_url };

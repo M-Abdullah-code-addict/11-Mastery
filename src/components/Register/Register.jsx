@@ -1,11 +1,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
+import { registerUser } from "../../api/authapi"
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const name = e.target.name.value;
@@ -27,21 +28,19 @@ function Register() {
       toast.error("Passwords do not match");
       return;
     }
-
-    toast.success("Account created (frontend only)");
+  
+    const result = registerUser({name, email, password})
+    console.log(result)
   };
 
   return (
     <section className="w-full min-h-screen bg-slate-950 flex items-center justify-center px-6">
-
       <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
-
         <h1 className="text-4xl font-bold text-white text-center mb-6">
           Create Account
         </h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-
           <input
             name="name"
             type="text"
@@ -58,7 +57,6 @@ function Register() {
 
           {/* Password */}
           <div className="relative">
-
             <input
               name="password"
               type={showPassword ? "text" : "password"}
@@ -72,7 +70,6 @@ function Register() {
             >
               {showPassword ? <EyeOff /> : <Eye />}
             </div>
-
           </div>
 
           <input
@@ -85,7 +82,6 @@ function Register() {
           <button className="bg-orange-400 hover:bg-orange-500 transition-all py-3 rounded-xl font-semibold text-white">
             Create Account
           </button>
-
         </form>
       </div>
     </section>

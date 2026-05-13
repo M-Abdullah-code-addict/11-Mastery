@@ -1,12 +1,24 @@
 import { useParams } from "react-router-dom";
 import { PDFarray } from "../../SampleDatabase/Database";
+import { getAllPdfs } from "../../api/pdfapi"
+import { useEffect, useState } from "react";
 
 function DynamicPDF() {
-  const { pdfId } = useParams();
+  const { pdfId, subject } = useParams();
+  const [pdfDetails, setPdfDetails] = useState()
 
-  const pdfDetails = PDFarray.find(
-    (item) => String(item.id) === String(pdfId)
-  );
+  useEffect(() => {
+    const getPdfDetails = async () => {
+      const allPdfs = await getAllPdfs(subject)
+      const pdfDetail = allPdfs.find(
+        (item) => String(item.id) === String(pdfId)
+      )
+      setPdfDetails(pdfDetail)
+    }
+
+    getPdfDetails()
+  }, [])
+  
 
   if (!pdfDetails) {
     return (
@@ -31,7 +43,7 @@ function DynamicPDF() {
 
           {/* Download Button */}
           <a
-            href={pdfDetails.URL}
+            href={pdfDetails.secure_url}
             download
             target="_blank"
             rel="noreferrer"
@@ -43,7 +55,7 @@ function DynamicPDF() {
 
         {/* PDF Viewer */}
         <iframe
-          src={`https://docs.google.com/gview?embedded=true&url=${pdfDetails.URL}`}
+          src={`https://docs.google.com/gview?embedded=true&url=${pdfDetails.secure_url}`}
           className="w-full min-h-[80vh] bg-white"
           title="PDF Viewer"
         />

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
+import { loginUser } from "../../api/authapi"
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/slices/authSlice";
+
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
@@ -21,7 +26,9 @@ function SignIn() {
       return;
     }
 
-    toast.success("Login successful (frontend only)");
+
+    const user = await loginUser({email, password})
+    dispatch(loginSuccess(user.data.user))
   };
 
   return (

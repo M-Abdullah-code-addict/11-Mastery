@@ -4,10 +4,11 @@ function Feedbacks() {
   const feedbacks = [
     {
       id: 1,
-      name: "Oliver Smith",
+      name: "Muhammad Afaan",
       feedback:
         "11+ Mastery helped me understand tricky maths topics really clearly. The practice papers feel just like real exam questions!",
       image: "https://randomuser.me/api/portraits/men/12.jpg",
+      place: "Pakistani Student"
     },
     {
       id: 2,
@@ -15,20 +16,23 @@ function Feedbacks() {
       feedback:
         "I improved a lot in English comprehension. The answer PDFs really helped me see where I was going wrong.",
       image: "https://randomuser.me/api/portraits/women/22.jpg",
+      place: "UK 11+ Student"
     },
     {
       id: 3,
-      name: "Harry Williams",
+      name: "Muhammad Ismail",
       feedback:
         "The mock tests are brilliant. They made me feel confident before my grammar school entrance exam.",
       image: "https://randomuser.me/api/portraits/men/45.jpg",
+      place: "Pakistani Student"
     },
     {
       id: 4,
-      name: "Sophia Brown",
+      name: "Ambar",
       feedback:
         "Everything is well organised and easy to follow. It really helped me stay consistent with my revision.",
       image: "https://randomuser.me/api/portraits/women/35.jpg",
+      place: "Pakistani Student"
     },
     {
       id: 5,
@@ -36,6 +40,7 @@ function Feedbacks() {
       feedback:
         "I like how the practice papers are structured. It feels like real exam preparation every time I practice.",
       image: "https://randomuser.me/api/portraits/men/52.jpg",
+      place: "UK 11+ Student"
     },
     {
       id: 6,
@@ -43,6 +48,7 @@ function Feedbacks() {
       feedback:
         "Very helpful platform for 11+ preparation. The step-by-step answers made difficult questions easy to understand.",
       image: "https://randomuser.me/api/portraits/women/48.jpg",
+      place: "UK 11+ Student"
     },
   ];
 
@@ -103,7 +109,7 @@ function Feedbacks() {
                   {item.name}
                 </h4>
                 <p className="text-gray-500 text-sm">
-                  UK 11+ Student
+                  {item.place}
                 </p>
               </div>
 

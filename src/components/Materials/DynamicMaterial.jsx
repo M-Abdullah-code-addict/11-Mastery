@@ -1,10 +1,29 @@
 import { NavLink, useParams } from "react-router-dom";
 import { materials } from "../../constants";
 import { FileText } from "lucide-react";
-import { PDFarray } from "../../SampleDatabase/Database"
+import { getAllPdfs } from "../../api/pdfapi"
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast"
 
 function DynamicMaterial() {
   const { subject } = useParams();
+  const [PDFarray, setPDFarray] = useState()
+
+  useEffect(() => {
+  const fetch_pdfs = async () => {
+    try {
+      const pdfs = await getAllPdfs(subject)
+      setPDFarray(pdfs)
+    } catch (error) {
+      toast.error(String(error))
+    }
+  }
+
+  fetch_pdfs()
+}, [subject])
+  
+
+  
 
   const selectedSubject = materials.find(
     (item) => String(item.route) === String(subject)
@@ -28,7 +47,7 @@ function DynamicMaterial() {
       {/* PDF Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
 
-        {PDFarray.map((item) => (
+        {PDFarray && PDFarray.map((item) => (
           <NavLink
             key={item.id}
             to={`/materials/${subject}/${item.id}`}
@@ -42,7 +61,7 @@ function DynamicMaterial() {
 
             {/* PDF Name */}
             <h3 className="text-white font-semibold text-base sm:text-lg group-hover:text-orange-400 transition-all duration-300">
-              {item.name}
+              {item.filename.split(".")[0]}
             </h3>
 
             {/* Tag */}
